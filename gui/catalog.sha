@@ -1,0 +1,424 @@
+Make(modules)
+Add(MainForm,1,49,70)
+{
+  Width=#3:355|
+  Height=#3:611|
+  Caption=#10:ui.catalog|
+}
+Add(Label,174,385,77)
+{
+  Left=42
+  Top=469
+  Width=#3:281|
+  Caption=#8:ui.terms|
+  Link=1
+  Point(onMouseDown)
+  link(onMouseDown,175:doOpen,[])
+}
+Add(CheckBox,173,175,490)
+{
+  Left=35
+  Top=483
+  Width=#3:304|
+  Caption=#13:ui.termsagree|
+  link(onCheck,181:doWork2,[])
+}
+Add(CheckBox,122,406,406)
+{
+  Left=70
+  Top=154
+  Width=#3:206|
+  Caption=#13:ui.cat.source|
+}
+Add(XMLHttpRequest,39,441,497)
+{
+  Method=1
+  URL=#15:server/core.php|
+  link(onLoad,236:doWork2,[(495,503)(495,517)])
+  link(onError,235:doEvent1,[(485,510)(485,552)])
+}
+Add(Hub,40,399,490)
+{
+  OutCount=3
+  link(onEvent1,118:doWork2,[(501,496)(501,510)])
+  link(onEvent2,39:doOpen,[])
+  link(onEvent3,39:doSend,[])
+}
+Add(Image,41,441,196)
+{
+  Left=49
+  Top=210
+  Width=#2:48|
+  Height=#2:48|
+}
+Add(DropBox,42,210,196)
+{
+  Left=49
+  Top=210
+  Width=#2:48|
+  Height=#2:48|
+  link(onDropFile,45:doWork2,[])
+}
+Add(FileRead,43,329,196)
+{
+  Type=2
+  link(onRead,116:doWork2,[])
+}
+Add(ODialog,44,210,245)
+{
+  Filter=#5:*.png|
+  link(onExecute,45:doWork3,[(291,251)])
+}
+Add(HubEx,45,287,196)
+{
+  link(onEvent,43:doRead,[])
+}
+Add(Button,46,147,245)
+{
+  Left=133
+  Top=217
+  Width=#3:150|
+  Height=#2:35|
+  Caption=#15:ui.cat.fromdisk|
+  link(onClick,44:doExecute,[])
+}
+Add(Memory,47,385,196)
+{
+  link(onData,41:doLoad,[])
+}
+Add(ComboBox,48,350,336)
+{
+  Left=63
+  Top=294
+  Width=#3:233|
+  Height=#2:27|
+  Strings=#8:(select)|5:Other|4:Game|5:Tools|4:Demo|7:Editors|10:Electronic|4:Math|3:WEB|
+  Point(doSelectIndex)
+}
+Add(Label,49,147,196)
+{
+  Left=35
+  Top=175
+  Width=#3:288|
+  Height=#2:21|
+  Theme=#10:my-caption|
+  Caption=#14:ui.cat.appicon|
+}
+Add(CSS,50,49,126)
+{
+  StyleSheet=#13:.my-caption {|31:	border-bottom: 1px solid gray;|1:}|10:.my-bold {|19:	font-weight: bold;|1:}|10:.my-back {|13:	color: gray;|1:}|
+}
+Add(Label,51,147,336)
+{
+  Left=35
+  Top=266
+  Width=#3:288|
+  Height=#2:21|
+  Theme=#10:my-caption|
+  Caption=#11:ui.category|
+}
+Add(Label,52,147,35)
+{
+  Left=35
+  Top=42
+  Width=#3:288|
+  Height=#2:21|
+  Theme=#10:my-caption|
+  Caption=#15:ui.cat.settings|
+}
+Add(Edit,53,294,35)
+{
+  Left=77
+  Top=77
+  Width=#3:211|
+  PlaceHolder=#15:3-24 characters|
+}
+Add(Button,55,266,490)
+{
+  Left=203
+  Top=539
+  Width=#3:115|
+  Height=#2:35|
+  Enabled=0
+  Caption=#7:ui.send|
+  Point(doEnabled)
+  link(onClick,63:doBuild,[])
+}
+Add(Label,56,203,35)
+{
+  Left=7
+  Top=77
+  Width=#2:64|
+  Height=#2:21|
+  Caption=#12:ui.cat.title|
+  HAlign=2
+}
+Add(Edit,57,301,77)
+{
+  Left=77
+  Top=105
+  Width=#3:211|
+  PlaceHolder=#20:example: 1.0, 1.0.23|
+}
+Add(CheckBox,59,308,119)
+{
+  Left=70
+  Top=133
+  Width=#3:206|
+  Caption=#14:ui.cat.offline|
+}
+Add(Label,60,147,392)
+{
+  Left=35
+  Top=329
+  Width=#3:288|
+  Height=#2:21|
+  Theme=#10:my-caption|
+  Caption=#7:ui.info|
+}
+Add(Label,61,203,77)
+{
+  Left=7
+  Top=105
+  Width=#2:64|
+  Height=#2:21|
+  Caption=#14:ui.cat.version|
+  HAlign=2
+}
+Add(Memo,62,357,392)
+{
+  Left=35
+  Top=357
+  Width=#3:288|
+}
+Add(URLBuilder,63,322,490)
+{
+  Args=#5:title|7:version|7:offline|4:icon|8:category|4:info|4:file|6:source|3:pub|
+  link(onBuild,40:doEvent1,[])
+  link(title,53:Text,[(328,327)(300,327)])
+  link(version,57:Text,[(335,319)(307,319)])
+  link(offline,59:Checked,[(342,311)(314,311)])
+  link(icon,47:Value,[(349,322)(391,322)])
+  link(category,48:SelectIndex,[])
+  link(info,62:Text,[])
+  link(file,79:Value,[])
+  link(source,122:Checked,[(377,478)(412,478)])
+  link(pub,233:Checked,[(384,482)(454,482)])
+}
+Add(hcTransmitter,78,266,441)
+{
+  link(onInit,79:doValue,[])
+}
+Add(Memory,79,364,441)
+{
+  link(onData,86:doEvent1,[])
+}
+Add(Label,82,532,441)
+{
+  Left=35
+  Top=14
+  Width=#3:288|
+  Height=#2:21|
+  Theme=#7:my-bold|
+  Caption=#3:---|
+}
+Add(Hub,86,483,441)
+{
+  link(onEvent1,82:doCaption,[])
+  link(onEvent2,99:doBuild,[(514,454)(514,496)])
+}
+Add(CableEvent,94,266,35)
+{
+  Wire=#5:title|7:version|7:offline|
+  link(title,53:doText,[])
+  link(version,57:doText,[(290,48)(290,83)])
+  link(offline,59:doCheck,[(285,55)(285,125)])
+}
+Add(MultiElementEx,99,532,490)
+{
+  @Comment=#17:Load project info|
+  link(onCable,100:doEvent1,[(578,496)(578,538)(191,538)(191,293)])
+  link(onLoad,119:doWork2,[])
+}
+BEGIN_SDK
+Add(MultiElementEditorEx,98,7,7)
+{
+  WorkCount=#7:doBuild|0:|
+  EventCount=#7:onCable|6:onLoad|
+  @VOffset=28
+  @Width=377
+  @Height=130
+  link(doBuild,87:doBuild,[])
+}
+Add(XMLHttpRequest,83,126,35)
+{
+  Method=1
+  URL=#15:server/core.php|
+  link(onLoad,84:doConvert,[])
+}
+Add(JSON,84,175,35)
+{
+  link(onConvert,96:doEvent1,[])
+}
+Add(URLBuilder,87,35,35)
+{
+  Args=#3:app|
+  link(onBuild,88:doEvent1,[])
+}
+Add(Hub,88,91,35)
+{
+  link(onEvent1,83:doOpen,[])
+  link(onEvent2,83:doSend,[])
+}
+Add(JSON_Field,92,266,35)
+{
+  Name=#5:title|
+  link(onGet,93:title,[])
+}
+Add(CableWork,93,322,35)
+{
+  Wire=#5:title|7:version|7:offline|11:category_id|4:icon|4:info|6:source|3:pub|
+  link(onCable,98:onCable,[])
+}
+Add(JSON_Field,95,266,42)
+{
+  Name=#7:version|
+  link(onGet,93:version,[])
+}
+Add(Hub,96,224,35)
+{
+  OutCount=9
+  link(onEvent1,92:doGet,[])
+  link(onEvent2,95:doGet,[])
+  link(onEvent3,97:doGet,[])
+  link(onEvent4,113:doGet,[])
+  link(onEvent5,114:doGet,[])
+  link(onEvent6,115:doGet,[])
+  link(onEvent7,123:doGet,[])
+  link(onEvent8,234:doGet,[])
+  link(onEvent9,98:onLoad,[(336,97)(336,48)])
+}
+Add(JSON_Field,97,266,49)
+{
+  Name=#7:offline|
+  link(onGet,93:offline,[])
+}
+Add(JSON_Field,113,266,56)
+{
+  Name=#11:category_id|
+  link(onGet,93:category_id,[])
+}
+Add(JSON_Field,114,266,63)
+{
+  Name=#4:icon|
+  link(onGet,93:icon,[])
+}
+Add(JSON_Field,115,266,70)
+{
+  Name=#4:info|
+  link(onGet,93:info,[])
+}
+Add(JSON_Field,123,266,77)
+{
+  Name=#6:source|
+  link(onGet,93:source,[])
+}
+Add(JSON_Field,234,266,84)
+{
+  Name=#3:pub|
+  link(onGet,93:pub,[])
+}
+END_SDK
+Add(CableEvent,98,231,294)
+{
+  Wire=#4:icon|11:category_id|4:info|6:source|5:title|3:pub|
+  link(icon,116:doWork3,[(375,300)])
+  link(category_id,48:doSelectIndex,[(293,307)(293,356)])
+  link(info,62:doText,[(287,314)(287,405)])
+  link(source,122:doCheck,[(281,321)(281,412)])
+  link(title,177:doCompare,[(274,328)(274,412)(35,412)(35,496)])
+  link(pub,233:doCheck,[(268,335)(268,384)])
+}
+Add(Hub,100,203,287)
+{
+  OutCount=3
+  link(onEvent1,94:doCable,[(252,293)(252,41)])
+  link(onEvent2,98:doCable,[])
+}
+Add(HubEx,116,371,196)
+{
+  link(onEvent,47:doValue,[])
+}
+Add(Loader,117,672,497)
+{
+  Left=28
+  Top=21
+  Width=#3:295|
+  Height=#3:533|
+  Point(doVisible)
+}
+Add(ChannelToIndex,118,623,497)
+{
+  link(onIndex,117:doVisible,[])
+}
+Add(HubEx,119,595,497)
+{
+  link(onEvent,118:doWork1,[])
+}
+Add(Window,175,441,77)
+{
+  URL=#28:http://apps.hiasm.com/terms/|
+}
+Add(If_else,177,49,490)
+{
+  Type=5
+  link(onTrue,178:doData,[])
+}
+Add(DoData,178,98,490)
+{
+  Data=Real(1)
+  link(onEventData,180:doEvent1,[])
+}
+Add(Hub,180,147,490)
+{
+  link(onEvent1,173:doCheck,[])
+  link(onEvent2,181:doWork3,[(228,503)])
+}
+Add(HubEx,181,224,490)
+{
+  link(onEvent,55:doEnabled,[])
+}
+Add(Message,232,525,546)
+{
+  Text=#12:Format error|
+}
+Add(CheckBox,233,448,378)
+{
+  Left=35
+  Top=504
+  Width=#3:283|
+  Caption=#14:ui.cat.publish|
+}
+Add(Hub,235,497,546)
+{
+  link(onEvent1,232:doMessage,[])
+  link(onEvent2,236:doWork3,[(599,559)])
+}
+Add(HubEx,236,595,511)
+{
+  Angle=3
+  link(onEvent,119:doWork3,[(599,517)])
+}
+Add(Button,250,539,77)
+{
+  Left=35
+  Top=539
+  Width=#3:115|
+  Height=#2:35|
+  Caption=#7:ui.help|
+  link(onClick,251:doOpen,[])
+}
+Add(Window,251,595,77)
+{
+  URL=#32:http://forum.hiasm.com/wiki/5929|
+}
